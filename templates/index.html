@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Finder</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Özel CSS Dosyan -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4 shadow">
+                    <h1 class="text-center text-primary">Business Finder</h1>
+                    <form method="POST" action="/results">
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Bölge (Koordinatlar):</label>
+                            <input type="text" id="location" name="location" class="form-control" placeholder="Enlem, Boylam" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Kategori:</label>
+                            <input type="text" id="category" name="category" class="form-control" placeholder="Örneğin: restaurant" required>
+                        </div>
+                            <div class="mb-3">
+                                <label class="form-label">Çekilecek Bilgiler:</label><br>
+                                <div class="form-check">
+                                    <input type="checkbox" id="phone" name="info" value="phone" class="form-check-input">
+                                    <span class="custom-checkbox"></span>
+                                    <label for="phone" class="form-check-label">Telefon Numarası</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="email" name="info" value="email" class="form-check-input">
+                                    <span class="custom-checkbox"></span>
+                                    <label for="email" class="form-check-label">E-posta</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="website" name="info" value="website" class="form-check-input">
+                                    <span class="custom-checkbox"></span>
+                                    <label for="website" class="form-check-label">Web Sitesi</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Taramayı Başlat</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Özel JS Dosyan -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
+
+
+
+
+
+
