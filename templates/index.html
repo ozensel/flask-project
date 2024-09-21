@@ -3,65 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Finder</title>
-
+    <title>Form with Animated Checkboxes</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Özel CSS Dosyan -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
-<body class="bg-light">
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card p-4 shadow">
-                    <h1 class="text-center text-primary">Business Finder</h1>
-                    <form method="POST" action="/results">
-                        <div class="mb-3">
-                            <label for="location" class="form-label">Bölge (Koordinatlar):</label>
-                            <input type="text" id="location" name="location" class="form-control" placeholder="Enlem, Boylam" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="category" class="form-label">Kategori:</label>
-                            <input type="text" id="category" name="category" class="form-control" placeholder="Örneğin: restaurant" required>
-                        </div>
-                            <div class="mb-3">
-                                <label class="form-label">Çekilecek Bilgiler:</label><br>
-                                <div class="form-check">
-                                    <input type="checkbox" id="phone" name="info" value="phone" class="form-check-input">
-                                    <span class="custom-checkbox"></span>
-                                    <label for="phone" class="form-check-label">Telefon Numarası</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" id="email" name="info" value="email" class="form-check-input">
-                                    <span class="custom-checkbox"></span>
-                                    <label for="email" class="form-check-label">E-posta</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" id="website" name="info" value="website" class="form-check-input">
-                                    <span class="custom-checkbox"></span>
-                                    <label for="website" class="form-check-label">Web Sitesi</label>
-                                </div>
+<body>
+
+    <div class="container px-4 py-5 mx-auto">
+        <div class="card card0">
+            <div class="d-flex flex-lg-row flex-column-reverse">
+                <!-- Form Section -->
+                <div class="card card1">
+                    <div class="row justify-content-center my-auto">
+                        <div class="col-md-8 col-10 my-5">
+                            <!-- Your Logo -->
+                            <div class="row justify-content-center px-3 mb-3">
+                                <img id="logo" src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo">
                             </div>
+
+                            <!-- Form starts here -->
+                            <form action="{{ url_for('taramayi_baslat') }}" method="POST">
+                                <div class="form-group">
+                                    <label class="form-control-label text-muted">Şehir veya İlçe</label>
+                                    <input type="text" id="location_name" name="location_name" placeholder="Örneğin: İstanbul" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-control-label text-muted">Kategori</label>
+                                    <select id="category" name="category" class="form-control">
+                                        <option value="">Lütfen bir kategori seçin</option>
+                                    </select>
+                                </div>
+
+                                <!-- Checkboxes -->
+                                <div class="row test">
+                                    <div class="col-md-6">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="telefon" name="info[]" value="Telefon Numarası">
+                                            <label class="form-check-label" for="telefon">Telefon Numarası</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="website" name="info[]" value="Web Sitesi">
+                                            <label class="form-check-label" for="website">Web Sitesi</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    <div class="row test">
+
+                                    <div class="col-md-6">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="adres" name="info[]" value="Adres">
+                                            <label class="form-check-label" for="adres">Adres</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="is_open" name="info[]" value="Açık Olan İşletmeler">
+                                            <label class="form-check-label" for="is_open">Açık İşletmeler</label>
+                                        </div>
+                                    </div>
+
+                                    </div>
+
+                               
+
+                                <div class="row justify-content-center my-3 px-3">
+                                    <button type="submit" class="btn-block btn-color">Taramayı Başlat</button>
+                                </div>
+                            </form>
+
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Taramayı Başlat</button>
-                    </form>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div class="card card2">
+                    <div class="my-auto mx-md-5 px-md-5 right">
+                        {% if places_list %}
+                            <h3 class="text-white">Yakın Çevrede Bulunan Yerler</h3>
+                            <ul class="list-group list-group-flush">
+                                {% for place in places_list %}
+                                    <li class="list-group-item bg-transparent">
+                                        <strong>{{ place.name }}</strong><br>
+                                        {% if place.address %}
+                                        Adres: {{ place.address }}<br>
+                                        {% endif %}
+                                        {% if place.phone %}
+                                        Telefon: {{ place.phone }}<br>
+                                        {% endif %}
+                                        {% if place.website %}
+                                        Web Sitesi: <a href="{{ place.website }}" target="_blank">{{ place.website }}</a><br>
+                                        {% endif %}
+                                        İşletme Durumu: {{ place.is_open_now }}<br> <!-- Açık/Kapalı bilgisi burada yazılacak -->
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <h3 class="text-white">Yakın çevrede uygun sonuç bulunamadı</h3>
+                        {% endif %}
+
+                        {% if error_message %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error_message }}
+                            </div>
+                        {% endif %}
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Özel JS Dosyan -->
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Google Maps API with your API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIpjcdH8Cc3ojbUevwJVDFBZ1ZVTKgMkE&libraries=places&callback=initializeAutocomplete" async defer></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/kategori.js') }}"></script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>
-
-
-
-
-
-

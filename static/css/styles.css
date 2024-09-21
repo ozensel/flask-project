@@ -1,131 +1,279 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
+    color: #000;
+    overflow-x: hidden;
+    height: 100%;
+    background-image: linear-gradient(to right, #D500F9, #FFD54F);
+    background-repeat: no-repeat;
+    font-family: 'Poppins', sans-serif;
+}
+
+input, textarea {
+    background-color: #F3E5F5;
+    border-radius: 50px !important;
+    padding: 12px 15px 12px 15px !important;
+    width: 100%;
+    box-sizing: border-box;
+    border: none !important;
+    border: 1px solid #F3E5F5 !important;
+    font-size: 16px !important;
+    color: #000 !important;
+    font-weight: 400;
+}
+
+input:focus, textarea:focus {
+    box-shadow: none !important;
+    border: 1px solid #D500F9 !important;
+    outline-width: 0;
+    font-weight: 400;
+}
+
+button:focus {
+    box-shadow: none !important;
+    outline-width: 0;
+}
+
+.card {
+    border-radius: 0;
+    border: none;
+}
+
+.card1, .card2 {
+    width: 50%;
+}
+
+.card1 {
+    padding: 40px 30px 10px 30px;
+}
+
+.card2 {
+    background-image: linear-gradient(to right, #FFD54F, #D500F9);
+}
+
+#logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-check {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-check-input {
+    width: 25px;
+    height: 25px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.form-check-input:hover {
+    background-color: #FFD54F;
+    transform: scale(1.1);
+}
+
+.form-check-input:checked {
+    background-color: #D500F9;
+    transform: scale(1.2);
+}
+
+.form-check-label {
+    font-size: 16px;
+    color: #495057;
+    margin-left: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-check-label:hover {
+    color: #D500F9;
+    font-weight: bold;
+}
+
+/* Button hover */
+.btn-color {
+    border-radius: 50px;
+    color: #fff;
+    background-image: linear-gradient(to right, #FFD54F, #D500F9);
+    padding: 15px;
+    cursor: pointer;
+    border: none !important;
+    margin-top: 40px;
+}
+
+.btn-color:hover {
+    background-image: linear-gradient(to right, #D500F9, #FFD54F);
+    color: white;
+}
+
+/* Responsive Media Queries */
+@media screen and (max-width: 992px) {
+    .card1, .card2 {
+        width: 100%;
+    }
+    .right {
+        margin-top: 100px !important;
+        margin-bottom: 100px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px !important;
+    }
+    .card2 {
+        padding: 50px;
+    }
+    .right {
+        margin-top: 50px !important;
+        margin-bottom: 50px !important;
+    }
+}
+/* İşaretlendiğinde checkbox arka plan rengini değiştir */
+.form-check-input:checked {
+    background-color: #D500F9 !important;
+    border-color: #D500F9 !important;
+}
+
+/* Check işaretinin beyaz olması için */
+.form-check-input:checked::before {
+    content: "\2719"; /* Unicode onay işareti */
+    color: white; /* Check işareti beyaz */
+    font-size: 20px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    background-image: linear-gradient(to right, #FFD54F, #D500F9);
 }
 
-h1 {
-    color: #007acc;
-    animation: fadeIn 2s ease-in;
+/* Checkbox hover rengi */
+.form-check-input:hover {
+    background-color: #F3E5F5 !important;
+    transform: scale(1.1);
 }
 
-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    animation: slideIn 1s ease-in-out;
+/* Checkbox yazı hover animasyonu */
+.form-check-label:hover {
+    color: #D500F9 !important;
+    font-weight: bold;
 }
 
-input[type="text"], input[type="checkbox"], input[type="submit"] {
-    margin: 10px 0;
-    padding: 10px;
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+.right ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-input[type="submit"] {
-    background-color: #007acc;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.right li {
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    word-wrap: break-word;
 }
 
-input[type="submit"]:hover {
-    background-color: #005f99;
+.right h3, .right small {
+    text-align: center;
 }
-
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+.card2 {
+    width: 50%;
+    background-image: linear-gradient(to right, #FFD54F, #D500F9);
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-@keyframes slideIn {
-    0% { transform: translateY(-50px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
+.card2 .right {
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 
+/* Responsive Media Queries */
 
-/* Checkbox kapsayıcısı */
-.form-check {
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 18px;
-    user-select: none;
-}
-
-/* Gizli checkbox */
-.form-check-input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-
-/* Özelleştirilmiş stil */
-.custom-checkbox {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-/* Hover sırasında renk değişimi */
-.form-check:hover .custom-checkbox {
-    background-color: #ccc;
-}
-
-/* Checkbox işaretli olduğunda stil */
-.form-check-input:checked ~ .custom-checkbox {
-    background-color: #2196F3;
-    animation: pulse 0.4s;
-}
-
-/* İşaret simgesi */
-.custom-checkbox:after {
-    content: "";
-    position: absolute;
-    display: none;
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
-}
-
-/* Checkbox işaretliyken simge görünür */
-.form-check-input:checked ~ .custom-checkbox:after {
-    display: block;
-}
-
-/* Pulsing animasyon */
-@keyframes pulse {
-    0% {
-        transform: scale(0.95);
-        opacity: 0.7;
+/* Mobile view adjustments */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
     }
-    70% {
-        transform: scale(1.05);
-        opacity: 1;
+
+    .card1, .card2 {
+        width: 100%;
+        padding: 30px 20px;
     }
-    100% {
-        transform: scale(1);
-        opacity: 1;
+
+    .d-flex {
+        flex-direction: column-reverse !important;
     }
+
+    /* Adjust logo size for mobile */
+    #logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    /* Adjust form spacing for mobile */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn-color {
+        padding: 12px;
+    }
+
+    /* Adjust the text and layout in the right section */
+    .right {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .right h3 {
+        font-size: 1.5rem;
+    }
+
+    .right small {
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet view adjustments */
+@media screen and (max-width: 992px) {
+    .card1, .card2 {
+        width: 100%;
+        padding: 40px 30px;
+    }
+
+    .d-flex {
+        flex-direction: column-reverse !important;
+    }
+
+    /* Adjust logo size for tablet */
+    #logo {
+        width: 90px;
+        height: 90px;
+    }
+
+    /* Adjust form spacing for tablet */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-color {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .d-flex {
+        flex-direction: column !important;
+    }
+}
+
+.test {
+
+    width: 27em;
 }
